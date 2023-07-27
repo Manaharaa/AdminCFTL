@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import ArrowDownIcon from '@heroicons/react/24/solid/ArrowDownIcon';
 import ArrowUpIcon from '@heroicons/react/24/solid/ArrowUpIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/solid/CurrencyDollarIcon';
+import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
 import { Avatar, Card, CardContent, Stack, SvgIcon, Typography } from '@mui/material';
 
-export const OverviewBudget = (props) => {
+export const OverviewTotalTeachers = (props) => {
   const { difference, positive = false, sx, value } = props;
 
   return (
@@ -21,7 +21,7 @@ export const OverviewBudget = (props) => {
               color="text.secondary"
               variant="overline"
             >
-              Budget
+              Total Teachers
             </Typography>
             <Typography variant="h4">
               {value}
@@ -29,57 +29,38 @@ export const OverviewBudget = (props) => {
           </Stack>
           <Avatar
             sx={{
-              backgroundColor: 'error.main',
+              backgroundColor: 'warning.main',
               height: 56,
               width: 56
             }}
           >
             <SvgIcon>
-              <CurrencyDollarIcon />
+              <UsersIcon />
             </SvgIcon>
           </Avatar>
         </Stack>
-        {difference && (
           <Stack
             alignItems="center"
             direction="row"
             spacing={2}
             sx={{ mt: 2 }}
           >
-            <Stack
-              alignItems="center"
-              direction="row"
-              spacing={0.5}
-            >
-              <SvgIcon
-                color={positive ? 'success' : 'error'}
-                fontSize="small"
-              >
-                {positive ? <ArrowUpIcon /> : <ArrowDownIcon />}
-              </SvgIcon>
-              <Typography
-                color={positive ? 'success.main' : 'error.main'}
-                variant="body2"
-              >
-                {difference}%
-              </Typography>
-            </Stack>
             <Typography
               color="text.secondary"
               variant="caption"
             >
-              Since last month
+              As per latest data
             </Typography>
           </Stack>
-        )}
       </CardContent>
     </Card>
   );
 };
 
-OverviewBudget.prototypes = {
+OverviewTotalTeachers.propTypes = {
   difference: PropTypes.number,
   positive: PropTypes.bool,
-  sx: PropTypes.object,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
+  sx: PropTypes.object
 };
+

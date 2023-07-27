@@ -18,7 +18,7 @@ import {
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
 
-export const RegisteredTable = (props) => {
+export const RejectedTable = (props) => {
   const {
     count = 0,
     items = [],
@@ -35,6 +35,14 @@ export const RegisteredTable = (props) => {
 
   const selectedSome = (selected.length > 0) && (selected.length < items.length);
   const selectedAll = (items.length > 0) && (selected.length === items.length);
+
+  const handleCheckboxChange = (event, registrationId) => {
+    if (event.target.checked) {
+      onSelectOne?.(registrationId);
+    } else {
+      onDeselectOne?.(registrationId);
+    }
+  };
 
   return (
     <Card>
@@ -136,13 +144,7 @@ export const RegisteredTable = (props) => {
                       <TableCell padding="checkbox">
                         <Checkbox
                           checked={isSelected}
-                          onChange={(event) => {
-                            if (event.target.checked) {
-                              onSelectOne?.(registration.id);
-                            } else {
-                              onDeselectOne?.(registration.id);
-                            }
-                          }}
+                          onChange={(event) => handleCheckboxChange(event, registration.id)}
                         />
                       </TableCell>
                       <TableCell>
@@ -237,7 +239,7 @@ export const RegisteredTable = (props) => {
   );
 };
 
-RegisteredTable.propTypes = {
+RejectedTable.propTypes = {
   count: PropTypes.number,
   items: PropTypes.array,
   onDeselectAll: PropTypes.func,

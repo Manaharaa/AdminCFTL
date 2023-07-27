@@ -2,7 +2,11 @@ import PropTypes from 'prop-types';
 import ComputerDesktopIcon from '@heroicons/react/24/solid/ComputerDesktopIcon';
 import DeviceTabletIcon from '@heroicons/react/24/solid/DeviceTabletIcon';
 import PhoneIcon from '@heroicons/react/24/solid/PhoneIcon';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import ArrowPathIcon from '@heroicons/react/24/solid/ArrowPathIcon';
+import SchoolIcon from '@mui/icons-material/School';
 import {
+  Button,
   Box,
   Card,
   CardContent,
@@ -24,7 +28,6 @@ const useChartOptions = (labels) => {
     colors: [
       theme.palette.primary.main,
       theme.palette.success.main,
-      theme.palette.warning.main
     ],
     dataLabels: {
       enabled: false
@@ -63,30 +66,39 @@ const useChartOptions = (labels) => {
 };
 
 const iconMap = {
-  Desktop: (
+  'Advanced Level': (
     <SvgIcon>
-      <ComputerDesktopIcon />
+      <SchoolIcon />
     </SvgIcon>
   ),
-  Tablet: (
+  'Ordinary Level': (
     <SvgIcon>
-      <DeviceTabletIcon />
+      <AutoStoriesIcon />
     </SvgIcon>
   ),
-  Phone: (
-    <SvgIcon>
-      <PhoneIcon />
-    </SvgIcon>
-  )
 };
 
-export const OverviewTraffic = (props) => {
+export const StudentPieChart = (props) => {
   const { chartSeries, labels, sx } = props;
   const chartOptions = useChartOptions(labels);
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Traffic Source" />
+      <CardHeader title="Students Percentage" 
+      action={(
+        <Button
+          color="inherit"
+          size="small"
+          startIcon={(
+            <SvgIcon fontSize="small">
+              <ArrowPathIcon />
+            </SvgIcon>
+          )}
+        >
+          Sync
+        </Button>
+      )}
+      />
       <CardContent>
         <Chart
           height={300}
@@ -136,7 +148,7 @@ export const OverviewTraffic = (props) => {
   );
 };
 
-OverviewTraffic.propTypes = {
+StudentPieChart.propTypes = {
   chartSeries: PropTypes.array.isRequired,
   labels: PropTypes.array.isRequired,
   sx: PropTypes.object

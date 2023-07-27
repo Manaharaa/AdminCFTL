@@ -24,7 +24,7 @@ const useChartOptions = () => {
         show: false
       }
     },
-    colors: [theme.palette.primary.main, alpha(theme.palette.primary.main, 0.25)],
+    colors: [theme.palette.primary.main],
     dataLabels: {
       enabled: false
     },
@@ -67,24 +67,34 @@ const useChartOptions = () => {
         color: theme.palette.divider,
         show: true
       },
-      axisTicks: {
-        color: theme.palette.divider,
-        show: true
-      },
       categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
+        'CMB',
+        'GPH',
+        'KAL',
+        'KD',
+        'MTL',
+        'NEL',
+        'GL',
+        'MTA',
+        'HBT',
+        'JFN',
+        'KCH',
+        'MNR',
+        'VNY',
+        'MLT',
+        'BTC',
+        'AMP',
+        'TRC',
+        'KGL',
+        'PTL',
+        'ADP',
+        'PNW',
+        'BDL',
+        'MNG',
+        'RTP',
+        'KGL',
       ],
+      
       labels: {
         offsetY: 5,
         style: {
@@ -94,7 +104,7 @@ const useChartOptions = () => {
     },
     yaxis: {
       labels: {
-        formatter: (value) => (value > 0 ? `${value}K` : `${value}`),
+        formatter: (value) => (value > 0 ? `${value}` : `${value}`),
         offsetX: -10,
         style: {
           colors: theme.palette.text.secondary
@@ -124,11 +134,11 @@ export const OverviewSales = (props) => {
             Sync
           </Button>
         )}
-        title="Sales"
+        title="Students per District"
       />
       <CardContent>
         <Chart
-          height={350}
+          height={450}
           options={chartOptions}
           series={chartSeries}
           type="bar"

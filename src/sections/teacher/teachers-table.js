@@ -40,8 +40,8 @@ export const TeachersTable = (props) => {
     onCancelEdit,
   } = props;
 
-  const selectedSome = (selected.length > 0) && (selected.length < items.length);
-  const selectedAll = (items.length > 0) && (selected.length === items.length);
+  const selectedSome = selected.length > 0 && selected.length < items.length;
+  const selectedAll = items.length > 0 && selected.length === items.length;
 
   const handleEditCell = (id) => {
     onEditCell?.(id);
@@ -76,13 +76,18 @@ export const TeachersTable = (props) => {
                       }}
                     />
                   </TableCell>
-                  <TableCell>Name</TableCell>
+                  <TableCell>First Name</TableCell>
+                  <TableCell>Last Name</TableCell>
+                  <TableCell>Gender</TableCell>
+                  <TableCell>Marital Status</TableCell>
+                  <TableCell>Address</TableCell>
+                  <TableCell>District</TableCell>
+                  <TableCell>Mobile</TableCell>
                   <TableCell>Email</TableCell>
-                  <TableCell>Location</TableCell>
-                  <TableCell>Phone</TableCell>
-                  <TableCell>Signed Up</TableCell>
-                  {/* Add new column here */}
-                  <TableCell>New Column</TableCell>
+                  <TableCell>Branch</TableCell>
+                  <TableCell>Bank</TableCell>
+                  <TableCell>Account Number</TableCell>
+                  <TableCell>Branch Name</TableCell>
                   <TableCell>Action</TableCell>
                 </TableRow>
               </TableHead>
@@ -106,37 +111,29 @@ export const TeachersTable = (props) => {
                         />
                       </TableCell>
                       <TableCell>
-                        {selectedCell === customer.id ? (
-                          <TextField
-                            value={customer.name}
-                            onChange={(event) =>
-                              handleSaveCell(customer.id, 'name', event.target.value)
-                            }
-                          />
-                        ) : (
-                          <Stack alignItems="center" direction="row" spacing={2}>
-                            <Avatar src={customer.avatar}>
-                              {getInitials(customer.name)}
-                            </Avatar>
-                            <Typography variant="subtitle2">{customer.name}</Typography>
-                          </Stack>
-                        )}
+                        <Stack alignItems="center" direction="row" spacing={2}>
+                          <Avatar src={customer.avatar}>
+                            {getInitials(customer.name)}
+                          </Avatar>
+                          <Typography variant="subtitle2">{customer.name}</Typography>
+                        </Stack>
                       </TableCell>
+                      <TableCell>{customer.fName}</TableCell>
+                      <TableCell>{customer.lName}</TableCell>
+                      <TableCell>{customer.gender}</TableCell>
+                      <TableCell>{customer.marital}</TableCell>
+                      <TableCell>{customer.address}</TableCell>
+                      <TableCell>{customer.district}</TableCell>
+                      <TableCell>{customer.mobile}</TableCell>
                       <TableCell>{customer.email}</TableCell>
-                      <TableCell>
-                        <div style={{ whiteSpace: 'nowrap' }}>
-                          {customer.address.city}, {customer.address.state},{' '}
-                          {customer.address.country}
-                        </div>
-                      </TableCell>
-                      <TableCell>{customer.phone}</TableCell>
-                      <TableCell>{createdAt}</TableCell>
-                      {/* Render the value for the new column */}
-                      <TableCell>{customer.newColumnValue}</TableCell>
+                      <TableCell>{customer.branchScl}</TableCell>
+                      <TableCell>{customer.bank}</TableCell>
+                      <TableCell>{customer.accountNo}</TableCell>
+                      <TableCell>{customer.branchBank}</TableCell>
                       <TableCell>
                         {selectedCell === customer.id ? (
                           <>
-                            <Button onClick={handleSaveCell}>Save</Button>
+                            <Button onClick={() => handleSaveCell(customer.id)}>Save</Button>
                             <Button onClick={handleCancelEdit}>Cancel</Button>
                           </>
                         ) : (
@@ -181,3 +178,5 @@ TeachersTable.propTypes = {
   onSaveCell: PropTypes.func,
   onCancelEdit: PropTypes.func,
 };
+
+export default TeachersTable;

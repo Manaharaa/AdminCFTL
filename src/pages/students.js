@@ -10,7 +10,7 @@ import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/materia
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { StudentsTable } from 'src/sections/students/students-table';
-import { CustomersSearch } from 'src/sections/customer/customers-search';
+import { CustomersSearch } from 'src/sections/register/reg-search';
 import { applyPagination } from 'src/utils/apply-pagination';
 
 const now = new Date();
@@ -63,7 +63,7 @@ const Page = () => {
 
    // Fetch data from API when the component mounts
    useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/user//viewStudents')
+    fetch('http://127.0.0.1:8000/api/admin/viewStudents')
       .then((response) => response.json())
       .then((apiData) => {
         setApiData(apiData.data); // Update the state with the data fetched from the API

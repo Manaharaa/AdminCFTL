@@ -13,8 +13,8 @@ const Page = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
-      name: '',
       password: '',
+      conform_password: '',
       submit: null
     },
     validationSchema: Yup.object({
@@ -23,18 +23,18 @@ const Page = () => {
         .email('Must be a valid email')
         .max(255)
         .required('Email is required'),
-      name: Yup
-        .string()
-        .max(255)
-        .required('Name is required'),
       password: Yup
         .string()
         .max(255)
-        .required('Password is required')
+        .required('Password is required'),
+      conform_password: Yup
+        .string()
+        .max(255)
+        .required('Confirm Your Password')
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await auth.signUp(values.email, values.name, values.password);
+        await auth.signUp(values.email, values.password, values.conform_password);
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });
@@ -48,7 +48,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Register | Devias Kit
+          Register | CFTL
         </title>
       </Head>
       <Box
@@ -96,17 +96,7 @@ const Page = () => {
               onSubmit={formik.handleSubmit}
             >
               <Stack spacing={3}>
-                <TextField
-                  error={!!(formik.touched.name && formik.errors.name)}
-                  fullWidth
-                  helperText={formik.touched.name && formik.errors.name}
-                  label="Name"
-                  name="name"
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                />
-                <TextField
+              <TextField
                   error={!!(formik.touched.email && formik.errors.email)}
                   fullWidth
                   helperText={formik.touched.email && formik.errors.email}
@@ -125,8 +115,18 @@ const Page = () => {
                   name="password"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  type="password"
                   value={formik.values.password}
+                />
+                <TextField
+                  error={!!(formik.touched.conform_password && formik.errors.conform_password)}
+                  fullWidth
+                  helperText={formik.touched.conform_password && formik.errors.conform_password}
+                  label="Confirm Password"
+                  name="confirm_password"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="password"
+                  value={formik.values.conform_password}
                 />
               </Stack>
               {formik.errors.submit && (

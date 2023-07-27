@@ -38,7 +38,7 @@ export const items = [
   },
   {
     title: 'Teachers',
-    path: '/account',
+    path: '/teacher',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
